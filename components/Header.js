@@ -1,7 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 export default function Header() {
+    const router = useRouter();
+
   return (
     <header data-bs-theme="dark">
         <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -13,16 +16,16 @@ export default function Header() {
             <div className="collapse navbar-collapse" id="navbarCollapse">
                 <ul className="navbar-nav me-auto mb-2 mb-md-0">
                 <li className="nav-item">
-                    <Link className="nav-link active" aria-current="page" href="/">Home</Link>
+                    <Link className={`nav-link ${router.pathname == "/" ? "active" : ""}`} aria-current="page" href="/">Home</Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link disabled" href="/about">About</Link>
+                    <Link className={`nav-link ${router.pathname == "/about" ? "active" : ""}`} href="/about">About</Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link disabled" href="/events">Events</Link>
+                    <Link className={`nav-link ${router.pathname == "/events" ? "active" : ""}`} href="/events">Events</Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link disabled" href="/contact">Contact</Link>
+                    <Link className={`nav-link ${router.pathname == "/contact" ? "active" : ""}`} href="/contact">Contact</Link>
                 </li>
                 </ul>
                 {/*

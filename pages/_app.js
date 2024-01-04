@@ -5,6 +5,10 @@ import Footer from '@/components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@/styles/globals.css'
 
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
+
 export default function App({ Component, pageProps }) {
   useEffect(() => {
     require("bootstrap/dist/js/bootstrap.bundle.min.js");
@@ -15,7 +19,6 @@ export default function App({ Component, pageProps }) {
       <Header />
       <Component {...pageProps} />
       <Footer />
-      <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     </>
   )
 }

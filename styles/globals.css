@@ -53,7 +53,7 @@ body {
 
 /* Thin out the marketing headings */
 /* rtl:begin:remove */
-.featurette-heading {
+.featurette-heading, .about-heading {
   letter-spacing: -.05rem;
 }
 
@@ -73,10 +73,21 @@ body {
   .featurette-heading {
     font-size: 50px;
   }
+
+  .about-heading {
+    font-size: 40px;
+  }
+
+  .text-body-secondary {
+    font-size: 32px;
+  }
 }
 
 @media (min-width: 62em) {
   .featurette-heading {
     margin-top: 7rem;
+  }
+  .about-heading {
+    margin-top: 3rem;
   }
 }
