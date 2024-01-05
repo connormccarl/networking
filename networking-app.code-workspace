@@ -7,5 +7,7 @@
 			"path": "../../../Downloads/bootstrap-5.3.2-examples/bootstrap-5.3.2-examples/carousel"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 
-export default function about() {
+export default function About() {
   return (
     <main className='container py-4'>
         <div className="row pb-4">

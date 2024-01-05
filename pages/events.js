@@ -11,7 +11,7 @@ import {
   faLongArrowAltRight
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function events() {
+export default function Events() {
     const [lock, setLock] = useState(true)
     const [password, setPassword] = useState("")
 
@@ -68,7 +68,7 @@ export default function events() {
                     <h5 className="fw-bold">Poker Tournament</h5>
                     <ul className="my-2">
                         <li className='d-inline me-3'><FontAwesomeIcon icon={faClock} /> 06:00 PM - 09:00 PM</li>
-                        <li className='d-inline'><FontAwesomeIcon icon={faUser} /> Location: <a target="_blank" href="https://www.google.com/maps?saddr=My+Location&daddr=Muldoon%27s+Irish+Pub,+202+Newport+Center+Dr,+Newport+Beach,+CA+92660">Muldoon's Irish Pub</a></li>
+                        <li className='d-inline'><FontAwesomeIcon icon={faUser} /> Location: <a target="_blank" href="https://www.google.com/maps?saddr=My+Location&daddr=Muldoon%27s+Irish+Pub,+202+Newport+Center+Dr,+Newport+Beach,+CA+92660">Muldoon&apos;s Irish Pub</a></li>
                     </ul>
                     <p>Come have an exciting night of Poker and Networking.</p>
                     <button className="btn btn-link text-decoration-none" href="#">RSVP <FontAwesomeIcon icon={faLongArrowAltRight} /></button>

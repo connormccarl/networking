@@ -76,6 +76,7 @@ export default function Home() {
                 width={140}
                 height={140}
                 src="/broad.jpg"
+                alt="Picture of people networking"
               />
               <h2 className="fw-normal">Broad</h2>
               <p>We are a networking group catering to all elite professionals no matter your industry. If you want a chance to network with other heavy-hitters, join and watch your network explode.</p>
@@ -86,6 +87,7 @@ export default function Home() {
                 width={140}
                 height={140}
                 src="/invite-only.jpg"
+                alt="Picture of a lock"
               />
               <h2 className="fw-normal">Invite-Only</h2>
               <p>We are an invite-only networking group, exclusively offering unlimited networking potential to its members. Reach out to us if you have an interest in joining.</p>
@@ -97,6 +99,7 @@ export default function Home() {
                 width={140}
                 height={140}
                 src="/entertaining.jpg"
+                alt="Picture of a girl laughing"
               />
               <h2 className="fw-normal">Entertaining</h2>
               <p>We aim to provide entertaining and fun networking events that allow people to connect and enjoy themselves.</p>

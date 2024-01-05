@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,10 +8,67 @@ import {
   faEnvelope
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function contact() {
-    const handleSubmit = (e) => {
+export default function Contact() {
+    const [fields, setFields] = useState({
+        name: "",
+        email: "",
+        subject: "",
+        message: ""
+    })
+    const [showMessage, setShowMessage] = useState({
+        display: false,
+        message: "",
+        success: "Message successfully sent!",
+        error: "Error sending message."
+    })
+
+    const handleChange = (e) => {
+        const { name, value } = e.target
+        setFields((prevData) => ({
+            ...prevData,
+            [name]: value
+        }))
+    }
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        alert("Need to send...tech note")
+        console.log(fields)
+
+        // add formData
+        const formData = new FormData()
+        formData.append("name", fields.name)
+        formData.append("email", fields.email)
+        formData.append("subject", fields.subject)
+        formData.append("message", fields.message)
+
+        // call api
+        await fetch('api/contact', {
+            method: 'POST',
+            body: formData
+        })
+        .then (() => {
+            //reset page
+            setFields({
+                name: "",
+                email: "",
+                subject: "",
+                message: ""
+            })
+            setShowMessage({
+                ...showMessage,
+                display: true,
+                message: "success"
+            })
+        })
+        .catch((e) => {
+            setShowMessage({
+                ...showMessage,
+                display: true,
+                message: "error"
+            })
+        })
+
+
     }
 
   return (
@@ -20,18 +78,18 @@ export default function contact() {
             a matter of hours to help you.</p>
         <div className="row">
             <div className="col-md-9 mb-md-0 mb-5">
-                <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                <form>
                     <div className="row">
                         <div className="col-md-6">
                             <div className="md-form mb-0">
                                 <label htmlFor="name" className="">Your name</label>
-                                <input type="text" id="name" name="name" className="form-control" />
+                                <input type="text" id="name" value={fields.name} onChange={handleChange} name="name" className="form-control" />
                             </div>
                         </div>
                         <div className="col-md-6">
                             <div className="md-form mb-0">
                                 <label htmlFor="email" className="">Your email</label>
-                                <input type="text" id="email" name="email" className="form-control" />
+                                <input type="text" id="email" value={fields.email} onChange={handleChange} name="email" className="form-control" />
                             </div>
                         </div>
                     </div>
@@ -39,7 +97,7 @@ export default function contact() {
                         <div className="col-md-12">
                             <div className="md-form mb-0">
                                 <label htmlFor="subject" className="">Subject</label>
-                                <input type="text" id="subject" name="subject" className="form-control" />
+                                <input type="text" id="subject" value={fields.subject} onChange={handleChange} name="subject" className="form-control" />
                             </div>
                         </div>
                     </div>
@@ -48,7 +106,7 @@ export default function contact() {
 
                             <div className="md-form">
                                 <label htmlFor="message">Your message</label>
-                                <textarea type="text" id="message" name="message" rows="2" className="form-control md-textarea"></textarea>
+                                <textarea type="text" id="message" value={fields.message} onChange={handleChange} name="message" rows="2" className="form-control md-textarea"></textarea>
                             </div>
                         </div>
                     </div>
@@ -75,6 +133,14 @@ export default function contact() {
                 </ul>
             </div>
         </div>
+        {showMessage.display && (
+            <div className={`alert ${showMessage.message == "success" ? "alert-success" : "alert-danger"} mt-3`} role="alert">
+                {showMessage.message == "success"
+                    ? showMessage.success    
+                    : showMessage.error
+                }
+            </div>
+        )}
     </main>
   )
 }
