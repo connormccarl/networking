@@ -1,5 +1,5 @@
-import React from 'react'
-import { Container, Avatar, Badge, Title, Table, Group, Text, ActionIcon, Anchor, rem, SimpleGrid } from '@mantine/core';
+import React, { useState } from 'react'
+import { Container, Avatar, Badge, Title, Table, Group, Text, ActionIcon, Anchor, rem, SimpleGrid, TextInput } from '@mantine/core';
 import { IconSend,IconPhoneCall, IconAt } from '@tabler/icons-react';
 
 import classes from '@/styles/Members.module.css';
@@ -29,7 +29,22 @@ const groupColors = {
 }
 
 export default function Members() {
-    const rows = members.map((item) => (
+    const [focused, setFocused] = useState(false)
+    const [query, setQuery] = useState('')
+    const floating = query.trim().length !== 0 || focused || undefined
+
+    // handle search filter function
+    const searchFilter = (array) => {
+        return array.filter((element) => {
+            return element.name.toLowerCase().includes(query.toLowerCase()) ||
+                element.job.toLowerCase().includes(query.toLowerCase()) ||
+                element.email.toLowerCase().includes(query.toLowerCase()) ||
+                element.phone.replace('-','').includes(query.replace('-',''))
+        })
+    }
+    const filtered = searchFilter(members);
+
+    const rows = filtered.map((item) => (
         <Table.Tr key={item.name}>
           <Table.Td>
             <Group gap="sm">
@@ -147,6 +162,20 @@ export default function Members() {
             >
                 Group Members
         </Title>
+        <TextInput
+            label="Search Members"
+            placeholder="Search by name, job title, email, or phone number"
+            required
+            classNames={classes}
+            value={query}
+            onChange={(event) => setQuery(event.currentTarget.value)}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            mt="md"
+            autoComplete="nope"
+            data-floating={floating}
+            labelProps={{ 'data-floating': floating }}
+        />
         <Table.ScrollContainer minWidth={800}>
             <Table verticalSpacing="sm">
                 <Table.Thead>

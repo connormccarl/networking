@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { useState } from 'react';
 
-import styles from '@/styles/events.module.css'
+import styles from '@/styles/Events.module.css'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,7 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Events() {
-    const [lock, setLock] = useState(true)
+    const [lock, setLock] = useState(false)
     const [password, setPassword] = useState("")
 
     const handleChange = (e) => {
