@@ -1,42 +1,48 @@
-import React from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import React, { useState } from 'react'
+import { NextLink } from './NextLink';
+import { Container, Group, Burger, Collapse, Text } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+
+import classes from '@/styles/Header.module.css';
+
+const links = [
+    { link: '/', label: 'Home' },
+    { link: '/about', label: 'About' },
+    { link: '/events', label: 'Events' },
+    { link: '/contact', label: 'Contact' },
+  ];
 
 export default function Header() {
-    const router = useRouter();
+    const [opened, { toggle, close }] = useDisclosure(false);
+    const [active, setActive] = useState(links[0].link);
+
+    const items = links.map((link) => (
+        <NextLink
+            key={link.label}
+            href={link.link}
+            className={classes.link}
+            data-active={active === link.link || undefined}
+            onClick={(event) => {
+                setActive(link.link)
+            }}
+            >
+            {link.label}
+        </NextLink>
+    ));
 
   return (
-    <header data-bs-theme="dark">
-        <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <div className="container-fluid">
-            <Link className="navbar-brand" href="/">Networking</Link>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarCollapse">
-                <ul className="navbar-nav me-auto mb-2 mb-md-0">
-                <li className="nav-item">
-                    <Link className={`nav-link ${router.pathname == "/" ? "active" : ""}`} aria-current="page" href="/">Home</Link>
-                </li>
-                <li className="nav-item">
-                    <Link className={`nav-link ${router.pathname == "/about" ? "active" : ""}`} href="/about">About</Link>
-                </li>
-                <li className="nav-item">
-                    <Link className={`nav-link ${router.pathname == "/events" ? "active" : ""}`} href="/events">Events</Link>
-                </li>
-                <li className="nav-item">
-                    <Link className={`nav-link ${router.pathname == "/contact" ? "active" : ""}`} href="/contact">Contact</Link>
-                </li>
-                </ul>
-                {/*
-                <form className="d-flex" role="search">
-                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                <button className="btn btn-outline-success" type="submit">Search</button>
-                </form>
-                */}
-            </div>
-            </div>
-        </nav>
+    <header className={classes.header}>
+        <Container size="md" className={classes.inner}>
+            <div>Logo</div>
+            <Group gap={5} visibleFrom="xs">
+            {items}
+            </Group>
+
+            <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" />
+        </Container>
+        <Collapse in={opened} className={classes.dropdown} onBlur={close}>
+            <Text ta="center">{items}</Text>
+        </Collapse>
     </header>
   )
 }

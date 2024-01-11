@@ -91,7 +91,6 @@ export default function Home() {
               />
               <h2 className="fw-normal">Invite-Only</h2>
               <p>We are an invite-only networking group, exclusively offering unlimited networking potential to its members. Reach out to us if you have an interest in joining.</p>
-              <p><Link className="btn btn-secondary" href="/contact">Contact Us &raquo;</Link></p>
             </div>{/* /.col-lg-4 */}
             <div className="col-lg-4">
               <Image 
@@ -103,7 +102,6 @@ export default function Home() {
               />
               <h2 className="fw-normal">Entertaining</h2>
               <p>We aim to provide entertaining and fun networking events that allow people to connect and enjoy themselves.</p>
-              <p><Link className="btn btn-secondary" href="/events">See Events &raquo;</Link></p>
             </div>{/* /.col-lg-4 */}
           </div>{/* /.row */}
 

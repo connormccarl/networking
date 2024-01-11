@@ -93,7 +93,7 @@ export default function Contact() {
                             </div>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row mt-2">
                         <div className="col-md-12">
                             <div className="md-form mb-0">
                                 <label htmlFor="subject" className="">Subject</label>
@@ -101,7 +101,7 @@ export default function Contact() {
                             </div>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row mt-2">
                         <div className="col-md-12">
 
                             <div className="md-form">
@@ -113,7 +113,7 @@ export default function Contact() {
                 </form>
 
                 <div className="text-center text-md-left">
-                    <a className="btn btn-primary" onClick={handleSubmit}>Send</a>
+                    <a className="btn btn-primary mt-2" onClick={handleSubmit}>Send</a>
                 </div>
                 <div className="status"></div>
             </div>
