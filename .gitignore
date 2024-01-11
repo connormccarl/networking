@@ -35,4 +35,9 @@ yarn-error.log*
 next-env.d.ts
 
 # react email
-.react-email
+/.react-email
+
+# google smtp credentials
+/google
+/lib/email/credentials.json
+/lib/email/token.json
