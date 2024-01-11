@@ -2,19 +2,21 @@ import React, { useState } from 'react'
 import { NextLink } from './NextLink';
 import { Container, Group, Burger, Collapse, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { useRouter } from 'next/router';
 
 import classes from '@/styles/Header.module.css';
 
 const links = [
     { link: '/', label: 'Home' },
-    { link: '/about', label: 'About' },
     { link: '/events', label: 'Events' },
     { link: '/contact', label: 'Contact' },
+    { link: '/members', label: 'Members' },
   ];
 
 export default function Header() {
+    const router = useRouter()
     const [opened, { toggle, close }] = useDisclosure(false);
-    const [active, setActive] = useState(links[0].link);
+    const [active, setActive] = useState(router.pathname);
 
     const items = links.map((link) => (
         <NextLink

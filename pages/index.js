@@ -1,11 +1,62 @@
 import Head from 'next/head'
-import { Image, Container, Title, Button, Group, Text, List, ThemeIcon, rem } from '@mantine/core';
-import { IconCheck } from '@tabler/icons-react';
-import image from './image.svg';
+import { 
+  Image, 
+  Container, 
+  Button,
+  Title,
+  Text, 
+  List, 
+  ThemeIcon, 
+  rem, 
+  Badge,
+  Group,
+  Card,
+  SimpleGrid,
+  useMantineTheme, } from '@mantine/core';
+import { IconCheck, IconClubsFilled, IconGlassFullFilled, IconUser } from '@tabler/icons-react';
+import image from '@/public/image.svg';
 
 import classes from '@/styles/Home.module.css';
 
+const mockdata = [
+  {
+    title: 'Poker Tournaments',
+    description:
+      'Immerse yourself in the thrilling world of poker tournaments, where strategic prowess, unpredictable twists, and high-stakes excitement converge to create an engaging and dynamic connecting experience.',
+    icon: IconClubsFilled,
+  },
+  {
+    title: 'Whiskey/Tequila Tastings',
+    description:
+      'Indulge in a dynamic and flavorful experience with whiskey and tequila tastings, where the distinct character of each spirit intertwines, offering a delightful journey through the world of fine spirits and convivial enjoyment.',
+    icon: IconGlassFullFilled,
+  },
+  {
+    title: 'Guest Speakers',
+    description:
+      'Discover a wealth of knowledge and inspiration as insightful guest speakers captivate and enlighten audiences with their expertise, fostering engaging dialogues that leave a lasting impact.',
+    icon: IconUser,
+  },
+]
+
 export default function Home() {
+  const theme = useMantineTheme();
+  const features = mockdata.map((feature) => (
+    <Card key={feature.title} shadow="md" radius="md" className={classes.card} padding="xl">
+      <feature.icon
+        style={{ width: rem(50), height: rem(50) }}
+        stroke={2}
+        color={theme.colors.black}
+      />
+      <Text fz="lg" fw={500} className={classes.cardTitle} mt="md">
+        {feature.title}
+      </Text>
+      <Text fz="sm" c="dimmed" mt="sm">
+        {feature.description}
+      </Text>
+    </Card>
+  ))
+
   return (
     <>
       <Head>
@@ -15,149 +66,69 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <div id="myCarousel" className="carousel slide mb-6" data-bs-ride="carousel">
-          <div className="carousel-indicators">
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <Container size="md">
+        <div className={classes.inner}>
+          <div className={classes.content}>
+            <Title className={classes.title}>
+              An <span className={classes.highlight}>exclusive</span> Elite <br /> networking group
+            </Title>
+            <Text c="dimmed" mt="md">
+              Build meaningful connections faster than what you could do on your own - participate in fun, entertaining, invite-only networking activities that will have you wanting more
+            </Text>
+
+            <List
+              mt={30}
+              spacing="sm"
+              size="sm"
+              icon={
+                <ThemeIcon size={20} radius="xl">
+                  <IconCheck style={{ width: rem(12), height: rem(12) }} stroke={1.5} />
+                </ThemeIcon>
+              }
+            >
+              <List.Item>
+                <b>Broad</b> – connect with elite professionals from any industry
+              </List.Item>
+              <List.Item>
+                <b>Invite-Only</b> – networking events are exclusive providing better access to members
+              </List.Item>
+              <List.Item>
+                <b>Entertaining</b> – we aim tp provide fun, memorable events that allow people connect
+              </List.Item>
+            </List>
+
+            <Group mt={30}>
+              <Button radius="xl" size="md" className={classes.control}>
+                Join
+              </Button>
+              <Button variant="default" radius="xl" size="md" className={classes.control}>
+                See Events
+              </Button>
+            </Group>
           </div>
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <svg className="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-              <div className="container">
-                <div className="carousel-caption text-start">
-                  <h1>Example headline.</h1>
-                  <p className="opacity-75">Some representative placeholder content for the first slide of the carousel.</p>
-                  <p><a className="btn btn-lg btn-primary" href="#">Sign up today</a></p>
-                </div>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <svg className="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-              <div className="container">
-                <div className="carousel-caption">
-                  <h1>Another example headline.</h1>
-                  <p>Some representative placeholder content for the second slide of the carousel.</p>
-                  <p><a className="btn btn-lg btn-primary" href="#">Learn more</a></p>
-                </div>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <svg className="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-              <div className="container">
-                <div className="carousel-caption text-end">
-                  <h1>One more for good measure.</h1>
-                  <p>Some representative placeholder content for the third slide of this carousel.</p>
-                  <p><a className="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button className="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button className="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Next</span>
-          </button>
+          <Image src={image.src} className={classes.image} />
         </div>
+      </Container>
 
+      <Container size="md" py="xl">
+        <Group justify="center">
+          <Badge variant="filled" size="lg">
+            Best networking ever
+          </Badge>
+        </Group>
 
-        {/* Marketing messaging and featurettes
-        ================================================== */}
-        {/* Wrap the rest of the page in another container to center all the content. */}
+        <Title order={2} className={classes.featuresTitle} ta="center" mt="sm">
+          Connect with industry leaders in your backyard
+        </Title>
 
-        <div className="container marketing">
+        <Text c="dimmed" className={classes.description} ta="center" mt="md">
+          Our events are special...they are fun and entertaining providing you the opportunity to meet someone that will grow your business exponentially
+        </Text>
 
-          {/* Three columns of text below the carousel */}
-          <div className="row">
-            <div className="col-lg-4">
-              <Image 
-                className="rounded-circle"
-                width={140}
-                height={140}
-                src="/broad.jpg"
-                alt="Picture of people networking"
-              />
-              <h2 className="fw-normal">Broad</h2>
-              <p>We are a networking group catering to all elite professionals no matter your industry. If you want a chance to network with other heavy-hitters, join and watch your network explode.</p>
-            </div>{/* /.col-lg-4 */}
-            <div className="col-lg-4">
-              <Image 
-                className="rounded-circle"
-                width={140}
-                height={140}
-                src="/invite-only.jpg"
-                alt="Picture of a lock"
-              />
-              <h2 className="fw-normal">Invite-Only</h2>
-              <p>We are an invite-only networking group, exclusively offering unlimited networking potential to its members. Reach out to us if you have an interest in joining.</p>
-            </div>{/* /.col-lg-4 */}
-            <div className="col-lg-4">
-              <Image 
-                className="rounded-circle"
-                width={140}
-                height={140}
-                src="/entertaining.jpg"
-                alt="Picture of a girl laughing"
-              />
-              <h2 className="fw-normal">Entertaining</h2>
-              <p>We aim to provide entertaining and fun networking events that allow people to connect and enjoy themselves.</p>
-            </div>{/* /.col-lg-4 */}
-          </div>{/* /.row */}
-
-
-          {/* START THE FEATURETTES */}
-
-          <hr className="featurette-divider" />
-
-          <div className="row featurette">
-            <div className="col-md-7">
-              <h2 className="featurette-heading fw-normal lh-1">Poker Tournaments <span className="text-body-secondary">That&apos;ll blow your mind.</span></h2>
-              <p className="lead">Network with other heavy-hitters while playing poker. We accept people of all skill-levels. Usually only a $100 buy-in.</p>
-            </div>
-            <div className="col-md-5">
-              <Image 
-                src="/poker.jpg"
-                width={500}
-                height={400}
-                alt="Picture of a poker player's chips and whiskey"
-                className='featurette-image img-fluid mx-auto'
-              />
-            </div>
-          </div>
-
-          <hr className="featurette-divider" />
-
-          <div className="row featurette">
-            <div className="col-md-7 order-md-2">
-              <h2 className="featurette-heading fw-normal lh-1">Another Event <span className="text-body-secondary">See for yourself.</span></h2>
-              <p className="lead">Find yourself here at this event.</p>
-            </div>
-            <div className="col-md-5 order-md-1">
-              <svg className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
-            </div>
-          </div>
-
-          <hr className="featurette-divider" />
-
-          <div className="row featurette">
-            <div className="col-md-7">
-              <h2 className="featurette-heading fw-normal lh-1">Last Event <span className="text-body-secondary">Checkmate.</span></h2>
-              <p className="lead">Come experience the fun. </p>
-            </div>
-            <div className="col-md-5">
-              <svg className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
-            </div>
-          </div>
-
-          {/* /END THE FEATURETTES */}
-
-        </div>{/* /.container */}
-      </main>
-    
+        <SimpleGrid cols={{ base: 1, md: 3 }} spacing="xl" mt={50}>
+          {features}
+        </SimpleGrid>
+      </Container>
     </>
   )
 }
