@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Container, Avatar, Badge, Title, Table, Group, Text, ActionIcon, Anchor, rem, SimpleGrid, TextInput } from '@mantine/core';
-import { IconSend,IconPhoneCall, IconAt } from '@tabler/icons-react';
+import { Container, Avatar, Badge, Title, Table, Group, Text, ActionIcon, Anchor, rem, SimpleGrid, TextInput, ScrollArea, UnstyledButton, Center, keys } from '@mantine/core';
+import { IconSend, IconPhoneCall, IconAt, IconSelector, IconChevronDown, IconChevronUp, IconSearch } from '@tabler/icons-react';
 
 import classes from '@/styles/Members.module.css';
 
-const members = [
+const data = [
     {
         photo: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-1.png",
         name: "Connor McCarl",
@@ -28,23 +28,70 @@ const groupColors = {
     "Insurance": "cyan"
 }
 
-export default function Members() {
-    const [focused, setFocused] = useState(false)
-    const [query, setQuery] = useState('')
-    const floating = query.trim().length !== 0 || focused || undefined
+function Th({ children, reversed, sorted, onSort }) {
+    const Icon = sorted ? (reversed ? IconChevronUp : IconChevronDown) : IconSelector;
+    return (
+      <Table.Th className={classes.th}>
+        <UnstyledButton onClick={onSort} className={classes.control}>
+          <Group justify="space-between">
+            <Text fw={500} fz="sm">
+              {children}
+            </Text>
+            <Center className={classes.icon}>
+              <Icon style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
+            </Center>
+          </Group>
+        </UnstyledButton>
+      </Table.Th>
+    )
+}
 
-    // handle search filter function
-    const searchFilter = (array) => {
-        return array.filter((element) => {
-            return element.name.toLowerCase().includes(query.toLowerCase()) ||
-                element.job.toLowerCase().includes(query.toLowerCase()) ||
-                element.email.toLowerCase().includes(query.toLowerCase()) ||
-                element.phone.replace('-','').includes(query.replace('-',''))
-        })
+function filterData(data, search) {
+    const query = search.toLowerCase().trim();
+    return data.filter((item) =>
+      keys(data[0]).some((key) => item[key].toLowerCase().includes(query))
+    );
+}
+
+function sortData(data, payload) {
+    const { sortBy } = payload;
+  
+    if (!sortBy) {
+      return filterData(data, payload.search);
     }
-    const filtered = searchFilter(members);
+  
+    return filterData(
+      [...data].sort((a, b) => {
+        if (payload.reversed) {
+          return b[sortBy].localeCompare(a[sortBy]);
+        }
+  
+        return a[sortBy].localeCompare(b[sortBy]);
+      }),
+      payload.search
+    );
+}
 
-    const rows = filtered.map((item) => (
+export default function Members() {
+    const [search, setSearch] = useState('');
+    const [sortedData, setSortedData] = useState(data);
+    const [sortBy, setSortBy] = useState(null);
+    const [reverseSortDirection, setReverseSortDirection] = useState(false);
+
+    const setSorting = (field) => {
+        const reversed = field === sortBy ? !reverseSortDirection : false;
+        setReverseSortDirection(reversed);
+        setSortBy(field);
+        setSortedData(sortData(data, { sortBy: field, reversed, search }));
+    }
+
+    const handleSearchChange = (event) => {
+        const { value } = event.currentTarget;
+        setSearch(value);
+        setSortedData(sortData(data, { sortBy, reversed: reverseSortDirection, search: value }));
+    }
+
+    const rows = sortedData.map((item) => (
         <Table.Tr key={item.name}>
           <Table.Td>
             <Group gap="sm">
@@ -90,7 +137,7 @@ export default function Members() {
             >
                 Group Administrators
         </Title>
-        <SimpleGrid cols={2} className='mt-4'>
+        <SimpleGrid cols={{ base: 1, md: 2 }} className='mt-4'>
             <Group wrap="nowrap">
                 <Avatar
                 src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-2.png"
@@ -162,34 +209,62 @@ export default function Members() {
             >
                 Group Members
         </Title>
-        <TextInput
-            label="Search Members"
-            placeholder="Search by name, job title, email, or phone number"
-            required
-            classNames={classes}
-            value={query}
-            onChange={(event) => setQuery(event.currentTarget.value)}
-            onFocus={() => setFocused(true)}
-            onBlur={() => setFocused(false)}
-            mt="md"
-            autoComplete="nope"
-            data-floating={floating}
-            labelProps={{ 'data-floating': floating }}
-        />
-        <Table.ScrollContainer minWidth={800}>
-            <Table verticalSpacing="sm">
-                <Table.Thead>
-                <Table.Tr>
-                    <Table.Th>Member</Table.Th>
-                    <Table.Th>Job Title</Table.Th>
-                    <Table.Th>Email</Table.Th>
-                    <Table.Th>Phone</Table.Th>
-                    <Table.Th />
-                </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>{rows}</Table.Tbody>
+        <ScrollArea>
+            <TextInput
+                placeholder="Search by any field"
+                mb="md"
+                leftSection={<IconSearch style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}
+                value={search}
+                onChange={handleSearchChange}
+            />
+            <Table horizontalSpacing="md" verticalSpacing="xs" miw={700}>
+                <Table.Tbody>
+                    <Table.Tr>
+                        <Th
+                        sorted={sortBy === 'name'}
+                        reversed={reverseSortDirection}
+                        onSort={() => setSorting('name')}
+                        >
+                        Name
+                        </Th>
+                        <Th
+                        sorted={sortBy === 'job'}
+                        reversed={reverseSortDirection}
+                        onSort={() => setSorting('job')}
+                        >
+                        Job Title
+                        </Th>
+                        <Th
+                        sorted={sortBy === 'email'}
+                        reversed={reverseSortDirection}
+                        onSort={() => setSorting('email')}
+                        >
+                        Email
+                        </Th>
+                        <Th
+                        sorted={sortBy === 'phone'}
+                        reversed={reverseSortDirection}
+                        onSort={() => setSorting('phone')}
+                        >
+                        Phone
+                        </Th>
+                    </Table.Tr>
+                </Table.Tbody>
+                <Table.Tbody>
+                    {rows.length > 0 ? (
+                        rows
+                    ) : (
+                        <Table.Tr>
+                        <Table.Td colSpan={Object.keys(data[0]).length}>
+                            <Text fw={500} ta="center">
+                            Nothing found
+                            </Text>
+                        </Table.Td>
+                        </Table.Tr>
+                    )}
+                </Table.Tbody>
             </Table>
-        </Table.ScrollContainer>
+        </ScrollArea>
     </Container>
   )
 }
