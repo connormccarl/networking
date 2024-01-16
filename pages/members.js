@@ -128,19 +128,19 @@ export default function Members() {
   return (
     <Container size='md'>
         <Title
-                order={2}
-                size="h2"
-                style={{ fontFamily: 'Greycliff CF, var(--mantine-font-family)' }}
-                fw={900}
-                ta="center"
-                className='mt-2'
-            >
-                Group Administrators
+          order={2}
+          size="h2"
+          style={{ fontFamily: 'Greycliff CF, var(--mantine-font-family)' }}
+          fw={900}
+          ta="center"
+          className='mt-2'
+        >
+          Group Administrators
         </Title>
         <SimpleGrid cols={{ base: 1, md: 2 }} className='mt-4'>
             <Group wrap="nowrap">
                 <Avatar
-                src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-2.png"
+                src="https://test.connormccarl.com/images/profile_joe.jpeg"
                 size={94}
                 radius="md"
                 />
@@ -156,7 +156,7 @@ export default function Members() {
                     <Group wrap="nowrap" gap={10} mt={3}>
                         <IconAt stroke={1.5} size="1rem" className={classes.icon} />
                         <Text fz="xs" c="dimmed">
-                            joewmcknight@gmail.com
+                            joe@korurm.com
                         </Text>
                     </Group>
 
@@ -170,7 +170,7 @@ export default function Members() {
             </Group>
             <Group wrap="nowrap">
                 <Avatar
-                src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-1.png"
+                src="https://test.connormccarl.com/images/profile_connor.png"
                 size={94}
                 radius="md"
                 />

@@ -44,3 +44,5 @@ next-env.d.ts
 
 # build folders
 *.zip
+
+next.config.js

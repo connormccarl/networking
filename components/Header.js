@@ -10,6 +10,7 @@ import classes from '@/styles/Header.module.css';
 
 
 const authenticatedLinks = [
+    { link: '/events', label: 'Events' },
     { link: '/members', label: 'Members' },
     { link: '/users', label: 'Admin' },
   ];
@@ -33,7 +34,7 @@ export default function Header() {
                 <Group h="100%" gap={0} visibleFrom="sm">
                     <NavLink href="/" className={classes.link} data-active={router.pathname === '/' || undefined}>Home</NavLink>
                     {user && authenticatedLinks.map((link) => (
-                        <NavLink href={link.link} className={classes.link} data-active={router.pathname === link.link || undefined}>{link.label}</NavLink>
+                        <NavLink key={link.label} href={link.link} className={classes.link} data-active={router.pathname === link.link || undefined}>{link.label}</NavLink>
                     ))}
                     <NavLink href="/contact" className={classes.link} data-active={router.pathname === '/contact' || undefined}>Contact</NavLink>
                 </Group>
@@ -65,7 +66,7 @@ export default function Header() {
 
                 <NavLink href="/" className={classes.link} data-active={router.pathname === '/' || undefined} onClick={closeDrawer}>Home</NavLink>
                 {user && authenticatedLinks.map((link) => (
-                    <NavLink href={link.link} className={classes.link} data-active={router.pathname === link.link || undefined} onClick={closeDrawer}>{link.label}</NavLink>
+                    <NavLink key={link.label} href={link.link} className={classes.link} data-active={router.pathname === link.link || undefined} onClick={closeDrawer}>{link.label}</NavLink>
                 ))}
                 <NavLink href="/contact" className={classes.link} data-active={router.pathname === '/contact' || undefined} onClick={closeDrawer}>Contact</NavLink>
 
