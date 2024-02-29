@@ -21,8 +21,8 @@ export const userService = {
     delete: _delete
 };
 
-async function login(username, password) {
-    const user = await fetchWrapper.post(`${baseUrl}/authenticate`, { username, password });
+async function login(email, password) {
+    const user = await fetchWrapper.post(`${baseUrl}/authenticate`, { email, password });
 
     // publish user to subscribers and store in local storage to stay logged in between page refreshes
     userSubject.next(user);
@@ -53,7 +53,7 @@ async function update(id, params) {
     await fetchWrapper.put(`${baseUrl}/${id}`, params);
 
     // update stored user if the logged in user updated their own record
-    if (id === userSubject.value.id) {
+    if (userSubject.value && id === userSubject.value.id) {
         // update local storage
         const user = { ...userSubject.value, ...params };
         localStorage.setItem('user', JSON.stringify(user));

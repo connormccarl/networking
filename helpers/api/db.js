@@ -15,10 +15,12 @@ export const db = {
 
 function userModel() {
     const schema = new Schema({
-        username: { type: String, unique: true, required: true },
-        hash: { type: String, required: true },
+        email: { type: String, unique: true, required: true },
+        hash: { type: String },
         firstName: { type: String, required: true },
-        lastName: { type: String, required: true }
+        lastName: { type: String, required: true },
+        job: { type: String },
+        phone: { type: String }
     }, {
         // add createdAt and updatedAt timestamps
         timestamps: true
@@ -32,6 +34,6 @@ function userModel() {
             delete ret.hash;
         }
     });
-
+    
     return mongoose.models.User || mongoose.model('User', schema);
 }

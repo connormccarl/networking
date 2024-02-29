@@ -49,7 +49,7 @@ export default function Events() {
                     </Text>
 
                     <Text fz="lg" fw={500} className={classes.name}>
-                        Muldoon's Irish Pub
+                        Muldoon&apos;s Irish Pub
                     </Text>
 
                     <Group wrap="nowrap" gap={10} mt={3}>
@@ -98,8 +98,8 @@ export default function Events() {
                 </div>
             </Group>
         </SimpleGrid>
-        { rows.map((row) => (
-            <div className="row align-items-center shadow py-2">
+        { rows.map((row, index) => (
+            <div className="row align-items-center shadow py-2" key={index}>
                 <div className="col-lg-5 col-sm-12">
                     <div className="position-relative">
                         <Image

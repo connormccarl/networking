@@ -18,12 +18,12 @@ function AddEdit(props) {
             .required('First Name is required'),
         lastName: Yup.string()
             .required('Last Name is required'),
-        username: Yup.string()
-            .required('Username is required'),
+        email: Yup.string()
+            .required('Email is required'),
         password: Yup.string()
             .transform(x => x === '' ? undefined : x)
             // password optional in edit mode
-            .concat(user ? null : Yup.string().required('Password is required'))
+            //.concat(user ? null : Yup.string().required('Password is required'))
             .min(6, 'Password must be at least 6 characters')
     });
     const formOptions = { resolver: yupResolver(validationSchema) };
@@ -75,8 +75,20 @@ function AddEdit(props) {
             </div>
             <div className="row">
                 <div className="mb-3 col">
-                    <label className="form-label">Username</label>
-                    <input name="username" type="text" {...register('username')} className={`form-control ${errors.username ? 'is-invalid' : ''}`} />
+                    <label className="form-label">Job Title</label>
+                    <input name="job" type="text" {...register('job')} className={`form-control ${errors.job ? 'is-invalid' : ''}`} />
+                    <div className="invalid-feedback">{errors.job?.message}</div>
+                </div>
+                <div className="mb-3 col">
+                    <label className="form-label">Phone</label>
+                    <input name="phone" type="text" {...register('phone')} className={`form-control ${errors.phone ? 'is-invalid' : ''}`} />
+                    <div className="invalid-feedback">{errors.phone?.message}</div>
+                </div>
+            </div>
+            <div className="row">
+                <div className="mb-3 col">
+                    <label className="form-label">Email</label>
+                    <input name="email" type="text" {...register('email')} className={`form-control ${errors.email ? 'is-invalid' : ''}`} />
                     <div className="invalid-feedback">{errors.email?.message}</div>
                 </div>
                 <div className="mb-3 col">
