@@ -106,7 +106,7 @@ export default function Home() {
               </Button>
             </Group>
           </div>
-          <Image src={image.src} className={classes.image} />
+          <Image src='./networking.png' className={classes.image} />
         </div>
       </Container>
 

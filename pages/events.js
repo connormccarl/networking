@@ -1,15 +1,15 @@
 import React from 'react'
-import { Container, Title, SimpleGrid, Group, Avatar, Text, Image } from '@mantine/core';
 import { IconMapPin, IconWorldWww } from '@tabler/icons-react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faClock,
+    faUser,
+    faLongArrowAltRight
+} from "@fortawesome/free-solid-svg-icons";
+import { Container, Title, SimpleGrid, Group, Avatar, Text, Image, Center, Select } from '@mantine/core';
 
 import classes from '@/styles/Events.module.css'
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faClock,
-  faUser,
-  faLongArrowAltRight
-} from "@fortawesome/free-solid-svg-icons";
 
 export default function Events() {
     const rows = [
@@ -39,7 +39,7 @@ export default function Events() {
         <SimpleGrid cols={{ base: 1, md: 2 }} className='my-4'>
             <Group wrap="nowrap">
                 <Avatar
-                src="https://test.connormccarl.com/images/muldoons_logo.png"
+                src="./muldoons_logo.png"
                 size={94}
                 radius="none"
                 />
@@ -69,7 +69,7 @@ export default function Events() {
             </Group>
             <Group wrap="nowrap">
                 <Avatar
-                src="https://test.connormccarl.com/images/elwoodclub_logo.png"
+                src="./elwoodclub_logo.png"
                 size={94}
                 radius="0"
                 />
@@ -98,6 +98,12 @@ export default function Events() {
                 </div>
             </Group>
         </SimpleGrid>
+        <Center className='mb-3'>
+            <Select
+                data={['Request an Event', 'Book a Round of Golf', 'Be a Podcast Guest' ]}
+                placeholder="Choose an Action"
+            />
+        </Center>
         { rows.map((row, index) => (
             <div className="row align-items-center shadow py-2" key={index}>
                 <div className="col-lg-5 col-sm-12">
