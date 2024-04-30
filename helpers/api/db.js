@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 const { serverRuntimeConfig } = getConfig();
 const Schema = mongoose.Schema;
 
-mongoose.connect(process.env.MONGODB_URI || serverRuntimeConfig.connectionString);
+mongoose.connect(process.env.NEXT_PUBLIC_MONGODB_URI);
 mongoose.Promise = global.Promise;
 
 export const db = {
