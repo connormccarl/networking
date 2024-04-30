@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IconMapPin, IconWorldWww } from '@tabler/icons-react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,11 +7,15 @@ import {
     faLongArrowAltRight
 } from "@fortawesome/free-solid-svg-icons";
 import { Container, Title, SimpleGrid, Group, Avatar, Text, Image, Center, Select } from '@mantine/core';
+import CustomModal from '@/components/CustomModal';
 
 import classes from './Events.module.css'
 
 
 export default function Events() {
+    const [action, setAction] = useState(null);
+    const [display, setDisplay] = useState(false);
+
     const rows = [
         {
             title: "Poker Tournament",
@@ -102,7 +106,10 @@ export default function Events() {
             <Select
                 data={['Request an Event', 'Book a Round of Golf', 'Be a Podcast Guest' ]}
                 placeholder="Choose an Action"
+                value={action}
+                onChange={setAction}
             />
+            <CustomModal view={action} reset={() => setAction(null)} />
         </Center>
         { rows.map((row, index) => (
             <div className="row align-items-center shadow py-2" key={index}>
