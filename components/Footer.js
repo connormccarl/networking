@@ -1,7 +1,7 @@
 import React from 'react'
 import { Anchor, Group } from '@mantine/core';
 
-import classes from '@/styles/Footer.module.css';
+import classes from './Footer.module.css';
 import { NextLink } from './NextLink';
 
 const showModal = (e) => {

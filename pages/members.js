@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Container, Avatar, Badge, Title, Table, Group, Text, ActionIcon, Anchor, rem, SimpleGrid, TextInput, ScrollArea, UnstyledButton, Center, keys } from '@mantine/core';
 import { IconSend, IconPhoneCall, IconAt, IconSelector, IconChevronDown, IconChevronUp, IconSearch } from '@tabler/icons-react';
 
-import classes from '@/styles/Members.module.css';
+import classes from './Members.module.css';
 
 const data = [
     {

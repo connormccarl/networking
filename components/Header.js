@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { NavLink } from '.';
 import { userService } from 'services';
 
-import classes from '@/styles/Header.module.css';
+import classes from './Header.module.css';
 
 
 const authenticatedLinks = [

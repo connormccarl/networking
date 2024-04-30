@@ -16,7 +16,7 @@ import {
 import { IconCheck, IconClubsFilled, IconGlassFullFilled, IconUser } from '@tabler/icons-react';
 import image from '@/public/image.svg';
 
-import classes from '@/styles/Home.module.css';
+import classes from './Index.module.css';
 
 const mockdata = [
   {
