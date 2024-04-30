@@ -20,7 +20,7 @@ export default function Events() {
             location: "Muldoon's Irish Pub",
             location_url: "https://www.google.com/maps?saddr=My+Location&daddr=Muldoon%27s+Irish+Pub,+202+Newport+Center+Dr,+Newport+Beach,+CA+92660",
             description: "Come have an exciting night of Poker and Networking.",
-            image: "./poker.png"
+            image: "./poker.jpg"
         }
     ]
 

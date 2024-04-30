@@ -14,7 +14,6 @@ import {
   SimpleGrid,
   useMantineTheme, } from '@mantine/core';
 import { IconCheck, IconClubsFilled, IconGlassFullFilled, IconUser } from '@tabler/icons-react';
-import image from '@/public/image.svg';
 
 import classes from './Index.module.css';
 

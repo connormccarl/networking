@@ -140,7 +140,7 @@ export default function Members() {
         <SimpleGrid cols={{ base: 1, md: 2 }} className='mt-4'>
             <Group wrap="nowrap">
                 <Avatar
-                src="https://test.connormccarl.com/images/profile_joe.jpeg"
+                src="./profile_joe.jpeg"
                 size={94}
                 radius="md"
                 />
@@ -170,7 +170,7 @@ export default function Members() {
             </Group>
             <Group wrap="nowrap">
                 <Avatar
-                src="https://test.connormccarl.com/images/profile_connor.png"
+                src="./profile_connor.png"
                 size={94}
                 radius="md"
                 />
