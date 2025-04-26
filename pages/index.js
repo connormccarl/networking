@@ -97,10 +97,10 @@ export default function Home() {
             </List>
 
             <Group mt={30}>
-              <Button radius="xl" size="md" className={classes.control}>
+              <Button href="/account/login" radius="xl" size="md" className={classes.control}>
                 Join
               </Button>
-              <Button variant="default" radius="xl" size="md" className={classes.control}>
+              <Button href="/events" variant="default" radius="xl" size="md" className={classes.control}>
                 See Events
               </Button>
             </Group>
