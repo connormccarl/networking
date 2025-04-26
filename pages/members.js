@@ -146,24 +146,24 @@ export default function Members() {
                 />
                 <div>
                     <Text fz="xs" tt="uppercase" fw={700} c="dimmed">
-                        Property and Casualty Insurance
+                        Partner
                     </Text>
 
                     <Text fz="lg" fw={500} className={classes.name}>
-                        Joe McKnight
+                        Steven Musielski
                     </Text>
 
                     <Group wrap="nowrap" gap={10} mt={3}>
                         <IconAt stroke={1.5} size="1rem" className={classes.icon} />
                         <Text fz="xs" c="dimmed">
-                            joe@korurm.com
+                            ntnocn123@yahoo.com
                         </Text>
                     </Group>
 
                     <Group wrap="nowrap" gap={10} mt={5}>
                         <IconPhoneCall stroke={1.5} size="1rem" className={classes.icon} />
                         <Text fz="xs" c="dimmed">
-                            714-709-3177
+                            714-904-0697
                         </Text>
                     </Group>
                 </div>
@@ -176,7 +176,7 @@ export default function Members() {
                 />
                 <div>
                     <Text fz="xs" tt="uppercase" fw={700} c="dimmed">
-                        Multifamily Real Estate Syndicator
+                        Co-Partner
                     </Text>
 
                     <Text fz="lg" fw={500} className={classes.name}>
@@ -186,7 +186,7 @@ export default function Members() {
                     <Group wrap="nowrap" gap={10} mt={3}>
                         <IconAt stroke={1.5} size="1rem" className={classes.icon} />
                         <Text fz="xs" c="dimmed">
-                            invest@connormccarl.com
+                            connormccarl@gmail.com
                         </Text>
                     </Group>
 
