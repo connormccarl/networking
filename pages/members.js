@@ -170,7 +170,7 @@ export default function Members() {
             </Group>
             <Group wrap="nowrap">
                 <Avatar
-                src="./profile_connor.png"
+                src="./profile_connor.jpg"
                 size={94}
                 radius="md"
                 />

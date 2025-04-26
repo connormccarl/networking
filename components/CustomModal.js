@@ -93,7 +93,7 @@ export default function CustomModal({ view, reset }) {
         <Modal opened={opened} onClose={() => {
           close();
           reset();
-        }} title="Request" centered>
+        }} title={view.title} centered>
             {displayFields}
         </Modal>
     </>
