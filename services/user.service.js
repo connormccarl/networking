@@ -38,7 +38,7 @@ function logout() {
 }
 
 async function register(user) {
-    await fetchWrapper.post(`${baseUrl}/register`, user);
+    //await fetchWrapper.post(`${baseUrl}/register`, user);
 }
 
 async function getAll() {
