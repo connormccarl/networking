@@ -54,7 +54,7 @@ function Login() {
                             {formState.isSubmitting && <span className="spinner-border spinner-border-sm me-1"></span>}
                             Login
                         </button>
-                        <Link href="/account/register" className="btn btn-link">Register</Link>
+                        {/**<Link href="/account/register" className="btn btn-link">Register</Link>**/}
                     </form>
                 </div>
             </div>
